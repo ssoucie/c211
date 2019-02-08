@@ -42,8 +42,6 @@
 ;; Thus, we need to process said Location. Notice that we have already
 ;; defined the template that processes a location above. So, we
 ;; call process-location with (house-place h) as the argument.
-;; This is what we mean when we refer to "Unions," non-primitive data types
-;; that reference other non-primitive data types.
 
 (define (process-house h)
   (... (process-location (house-place h))
@@ -85,8 +83,8 @@
 ;; Similarly, n3 represents a neighborhood of three houses, a new one that
 ;; costs $150,000 in New York City, and the two that are represented by n2.
 
-;; Don't let the name "neighborhood" confuse you, by the data definition
-;; it can be any collection of Houses, they do not need to be in the same
+;; Don't let the name "neighborhood" confuse you. By the data definition
+;; it can be any collection of Houses. They do not need to be in the same
 ;; Location. 
 
 ;; It should be clear that we can keep this up to make a Neighborhood
@@ -116,68 +114,68 @@
         [else (... (process-house (neighborhood-house n))
                    (process-neighborhood (neighborhood-others n)))]))
 
-;; Now let's make this concrete. Let's define a function avg-square-footage-total that takes
-;; a Neighborhood and returns a Number representing the total average square footage for
-;; said Neighborhood. Let's assume that houses in Bloomington have an average square
-;; footage of 2,000, Chicago 1,500, and New York City 1,000.
+;; Now let's make this concrete. Let's define a function total-taxes that takes
+;; a Neighborhood and returns a Number representing the total amount of yearly taxation for
+;; said Neighborhood. Let's assume that houses in Bloomington have a property tax rate
+;; of 10%, Chicago 15%, and New York City 20%. (For example, a resident of
+;; Bloomington would pay .1 * <the cost of their house>)
 
-;; First, let's design a function that takes a Location and returns the average square footage
+;; First, let's design a function that takes a Location and returns the property tax rate
 ;; for said Location.
 
-; location-avg : Location -> Number
-; returns the average square footage for a given Location
+; location-tax : Location -> Number
+; returns the property tax rate for a given Location
 
-(check-expect (location-avg "Bloomington") 2000)
-(check-expect (location-avg "Chicago") 1500)
-(check-expect (location-avg "New York City") 1000)
+(check-expect (location-tax "Bloomington") .1)
+(check-expect (location-tax "Chicago") .15)
+(check-expect (location-tax "New York City") .2)
 
 ;; We can just copy and paste the template and change the name and fill in the dots!
 
-(define (location-avg l)
-  (cond [(string=? l "Bloomington") 2000]
-        [(string=? l "Chicago") 1500]
-        [(string=? l "New York City") 1000]))
+(define (location-tax l)
+  (cond [(string=? l "Bloomington") .1]
+        [(string=? l "Chicago") .15]
+        [(string=? l "New York City") .2]))
 
 ;; Easy enough, right? Now we can define a function that takes in a House and
-;; returns the average square footage for said House.
+;; returns the amount of taxes paid for said House.
 
-; house-avg : House -> Number
-; returns the average square footage of the city the House is located in
+; house-tax : House -> Number
+; returns the amount of taxes paid for a given House
 
-(check-expect (house-avg (make-house "Chicago" 100000)) 1500)
-(check-expect (house-avg (make-house "Bloomington" 300000)) 2000)
-(check-expect (house-avg (make-house "New York City" 1000000)) 1000)
+(check-expect (house-tax (make-house "Chicago" 100000)) (* .15 100000))
+(check-expect (house-tax (make-house "Bloomington" 300000)) (* .1 300000))
+(check-expect (house-tax (make-house "New York City" 1000000)) (* .2 1000000))
 
 ;; Once again, let's copy and paste the template, change the names, and fill in the dots!
-;; However, this time we have extraneous data (we don't care about the House's price for this
-;; problem), so we will remove it.
 
-(define (house-avg h)
-  (location-avg (house-place h)))
+(define (house-tax h)
+  (* (location-tax (house-place h))
+     (house-price h)))
 
-;; Finally, let's write our complete avg-square-footage-total.
+;; Finally, let's write our complete total-taxes.
 
-; avg-square-footage-total : Neighborhood -> Number
-; computes the total square footage of the Neighborhood based on the averages
+; total-taxes : Neighborhood -> Number
+; computes the total amount of taxes paid for the Neighborhood 
 
 ;; Let me remind you of n1, n2, and n3, which are previously defined:
 #;(define n1 (make-house "Bloomington" 100000))
 #;(define n2 (make-neighborhood (make-house "Chicago" 200000) n1))
 #;(define n3 (make-neighborhood (make-house "New York City" 150000) n2))
 
-(check-expect (avg-square-footage-total n1) 2000)
-; just one House in Bloomington (2000)
-(check-expect (avg-square-footage-total n2) 3500)
-; a House in Chicago (1500) + the total from n1 (2000)
-(check-expect (avg-square-footage-total n3) 4500)
-; a House in New York City (1000) + the total from n2 (3500)
+(check-expect (total-taxes n1) 10000)
+; just one House in Bloomington (* .1 100000)
+(check-expect (total-taxes n2) 40000)
+; a House in Chicago (* .15 200000) + the total from n1 (10000)
+(check-expect (total-taxes n3) 70000)
+; a House in New York City (* .2 150000) + the total from n2 (40000)
 
-;; Copy and paste template, change the names, fill in dots, remove extraneous data
+;; Copy and paste template, change the names, fill in dots.
 
-(define (avg-square-footage-total n)
-  (cond [(house? n) (house-avg n)]
-        [else (+ (house-avg (neighborhood-house n))
-                 (avg-square-footage-total (neighborhood-others n)))]))
+(define (total-taxes n)
+  (cond [(house? n) (house-tax n)]
+        [else (+ (house-tax (neighborhood-house n))
+                 (total-taxes (neighborhood-others n)))]))
 
 ;; I was able to realize the dots in the else case should be replaced by +
 ;; because of my tests!
