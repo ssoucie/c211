@@ -1,4 +1,4 @@
-# Extra C211 Notes
+# How I Learned to Stop Worrying and Love the Design Recipe
 ## by Sam Soucie
 
 This repo serves as a collection of (verbose) notes about C211.
