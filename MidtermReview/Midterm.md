@@ -13,8 +13,14 @@ villain in BSL's syntax is prefix notation. In most other languages (including t
 ones) arithmetic and logical functions are expressed with infix notation, which is how they are
 expressed in standard English writing.
 
-Examples of infix notation: 3 + 3, true or false, (3 * 2) - 1
-Above examples translated to prefix notation: (+ 3 3), (or true false), (- (* 3 2) 1)
+Examples of infix notation: 
+* 3 + 3
+* true or false
+* (3 * 2) - 1  
+Above examples translated to prefix notation: 
+* (+ 3 3)
+* (or true false)
+* (- (* 3 2) 1)
 
 The reason for this is that all functions use the same syntax, namely:
 
@@ -30,7 +36,6 @@ We just take the name of the function, drop it in between the open paren and the
 and remove all the commas between the arguments.
 
 ## Data Types 
-
 
 > A "data type" is a name for a collection of data (read, stuff)
 > that share certain characteristics.                       
@@ -92,7 +97,6 @@ the function (and code) will break.
 
 > We call the specification of a function's number, order, and         
 > type of arguments, along with the type of the output its "signature".
-
 
 ## Defining Stuff 
 
@@ -225,12 +229,14 @@ Since we know that a DayOfWeek can be one of seven Strings (from the data defini
 we know that we need to check which DayOfWeek is passed as the argument to the function.
 We do this using the function cond, which works like this:
 
-(cond [question1 answer1]  
-      [question2 answer2]  
-      [question3 answer3]  
+```racket
+(cond [<question1> <answer1>]  
+      [<question2> <answer2>]  
+      [<question3> <answer3>]  
                ...  
-      [question-n answer-n]  
-      [else alternative]) *note*: this line is optional
+      [<question-n> <answer-n>]  
+      [else <alternative>]) ; this line is optional
+```
 
 Each expression wrapped in square brackets is evaluated from top to bottom until one of
 the questions is true, in which case the answer within that expression is returned.
@@ -625,12 +631,14 @@ We will need these two libraries for this section:
 big-bang is a function that allows us to create animations and games quite easily in BSL. The
 syntax is as follows:
 
-(big-bang initial-world  
-  [to-draw draw-function]  
-  [on-tick tick-function]  
-  [on-mouse mouse-handler]  
-  [on-key key-handler]  
+```racket
+(big-bang <initial-world>  
+  [to-draw <draw-function>]  
+  [on-tick <tick-function>]  
+  [on-mouse <mouse-handler>]  
+  [on-key <key-handler>]  
   ...)
+```
 
 The signatures of the four functions in the angle braces are:
 * draw-function : World -> Image  
