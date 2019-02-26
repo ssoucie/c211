@@ -225,11 +225,11 @@ Since we know that a DayOfWeek can be one of seven Strings (from the data defini
 we know that we need to check which DayOfWeek is passed as the argument to the function.
 We do this using the function cond, which works like this:
 
-(cond [<question1> <answer1>]
-      [<question2> <answer2>]
-      [<question3> <answer3>]
-               ...
-      [<question-n> <answer-n>]
+(cond [<question1> <answer1>]  
+      [<question2> <answer2>]  
+      [<question3> <answer3>]  
+               ...  
+      [<question-n> <answer-n>]  
       [else <alternative>]) *note*: this line is optional
 
 Each expression wrapped in square brackets is evaluated from top to bottom until one of
@@ -625,22 +625,22 @@ We will need these two libraries for this section:
 big-bang is a function that allows us to create animations and games quite easily in BSL. The
 syntax is as follows:
 
-(big-bang <initial-world>
-  [to-draw <draw-function>]
-  [on-tick <tick-function>]
-  [on-mouse <mouse-handler>]
-  [on-key <key-handler>]
+(big-bang initial-world  
+  [to-draw draw-function]  
+  [on-tick tick-function]  
+  [on-mouse mouse-handler]  
+  [on-key key-handler]  
   ...)
 
 The signatures of the four functions in the angle braces are:
-<draw-function> : World -> Image
-<tick-function> : World -> World
-<mouse-handler> : World Number Number MouseEvent -> World
-(the two numbers represent the x and y coordinates of the cursor)
-<key-handler> : World KeyEvent -> World
+* draw-function : World -> Image  
+* tick-function : World -> World  
+* mouse-handler : World Number Number MouseEvent -> World  
+  (the two numbers represent the x and y coordinates of the cursor)
+* key-handler : World KeyEvent -> World  
 no matter what animation/game/application you are writing!
 
-Note that the only function that deals with Images is the <draw-function>!!!
+Note that the only function that deals with Images is the draw-function!!!
 
 Note: big-bang can take a lot of different handlers (functions), but to-draw, on-tick, on-mouse,
 and on-key are the most used in this class. Also note that the only function required is a to-draw.
