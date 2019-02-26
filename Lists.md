@@ -106,16 +106,16 @@ In sum, here's the rundown on lists:
 ```
 where X is an already-defined data type.
 * The built in functions MOST IMPORTANT for using lists are:
-..* empty? : Anything -> Boolean
+  * empty? : Anything -> Boolean
     returns true if the input is the empty list
-..* cons? : Anything -> Boolean
+  * cons? : Anything -> Boolean
     returns true if the input is a non-empty list
-..* cons : X ListOfX -> ListOfX
+  * cons : X ListOfX -> ListOfX
     creates a list with X becoming the first and ListOfX becoming the rest
     ex: (cons 1 empty) -> (list 1), (cons 1 (cons 2 empty)) -> (list 1 2)
-..* first : ListOfX -> X
+  * first : ListOfX -> X
     returns the first element of the given list
-..* rest : ListOfX -> ListOfX
+  * rest : ListOfX -> ListOfX
     returns the list of everything BUT the first element
 
 ## IMPORTANT NOTE:
