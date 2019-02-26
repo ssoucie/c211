@@ -225,21 +225,21 @@ Since we know that a DayOfWeek can be one of seven Strings (from the data defini
 we know that we need to check which DayOfWeek is passed as the argument to the function.
 We do this using the function cond, which works like this:
 
-(cond [<question1> <answer1>]  
-      [<question2> <answer2>]  
-      [<question3> <answer3>]  
+(cond [question1 answer1]  
+      [question2 answer2]  
+      [question3 answer3]  
                ...  
-      [<question-n> <answer-n>]  
-      [else <alternative>]) *note*: this line is optional
+      [question-n answer-n]  
+      [else alternative]) *note*: this line is optional
 
 Each expression wrapped in square brackets is evaluated from top to bottom until one of
-the <question>s is true, in which case the <answer> within that expression is returned.
-So, each <question> needs to be something that returns a boolean.
+the questions is true, in which case the answer within that expression is returned.
+So, each question needs to be something that returns a boolean.
 
-If each <question> is false, two things could happen. The first is that your code just
-breaks. If all <question>s are false, nothing can be returned, but something has to be
+If each question is false, two things could happen. The first is that your code just
+breaks. If all questions are false, nothing can be returned, but something has to be
 returned, so an error is thrown. The second thing that could happen only happens if you
-have the optional else expression, which is evauluated only if each prior <question> 
+have the optional else expression, which is evauluated only if each prior question 
 was false.
 
 For the template that processes a DayOfWeek, we need to check which String the DayOfWeek
