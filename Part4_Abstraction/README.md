@@ -1,10 +1,14 @@
 # Abstraction
 
 ## Table of Contents
-[First Example](#first-example)
-[Abstraction Using Helper Functions](#abstraction-using-helper-functions)
-[Abstraction Using Local Helper Functions](#abstraction-using-local-helper-functions)
-[Abstraction Using Lambdas](#abstraction-using-lambdas)
+
+1. [First Example](#first-example)
+
+2. [Abstraction Using Helper Functions](#abstraction-using-helper-functions)
+
+3. [Abstraction Using Local Helper Functions](#abstraction-using-local-helper-functions)
+
+4. [Abstraction Using Lambdas](#abstraction-using-lambdas)
 
 As  programmers, we often find ourselves writing functions that are very similar
 or follow some sort of pattern. We can make our code more concise and adaptable
