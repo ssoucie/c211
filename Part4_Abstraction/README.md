@@ -1,5 +1,11 @@
 # Abstraction
 
+## Table of Contents
+[First Example](#first-example)
+[Abstraction Using Helper Functions](#abstraction-using-helper-functions)
+[Abstraction Using Local Helper Functions](#abstraction-using-local-helper-functions)
+[Abstraction Using Lambdas](#abstraction-using-lambdas)
+
 As  programmers, we often find ourselves writing functions that are very similar
 or follow some sort of pattern. We can make our code more concise and adaptable
 by doing something called abstraction.
@@ -12,12 +18,14 @@ We have something called The Abstraction Recipe, which is as follows:
 4. Design the abstraction by replacing differences with input names.
 5. Redefine the original functions using the abstraction.
 
+## First Example
+
 Let's consider a simple example. Let's abstract from two functions, one that
 sums all the numbers in a given list, and one that multiplies all the numbers in
 a given list.
-```racket
-1. Design at least 2 similar functions.
 
+1. Design at least 2 similar functions.
+```racket
 ; sum-list : [ListOf Number] -> Number
 ; adds up all the numbers in the given list
 
